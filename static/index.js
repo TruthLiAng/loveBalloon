@@ -22,13 +22,19 @@ function Container(wish, time, texts) {
 
 Container.prototype = {
     renderTexts(texts) {
+        var oDiv = document.getElementById("marqueeDiv");
+        var html = '';
+        html += '<marquee id="marquee" direction = "up" scrollamount="2" style="color:white; height:100px;line-height: 20px;font-size:12px;text-align: center;">';
+      
         let div = document.createElement("div");
         texts.forEach(item => {
             let d = document.createElement("div");
             d.innerHTML = item;
             div.appendChild(d);
         })
-        document.getElementById("marquee").innerHTML = div.innerHTML;
+        html+=div.innerHTML
+        html += '</marquee>';
+        oDiv.innerHTML =html;
     },
     finalText() {
         return this.text || "";
@@ -53,3 +59,19 @@ Container.prototype = {
         return this.passedSeconds % 60;
     },
 };
+
+function fillMarqueeData(){
+    var oDiv = document.getElementById("marqueeDiv");
+    var html = '';
+    html += '<marquee id="marquee" direction = "up" scrollamount="2" style="color:white; height:100px;line-height: 20px;font-size:12px;text-align: center;">';
+    html += '<span>系统通知2：</span>';
+    html += '<span>';
+    for(var i=0; i< data.length; i++){
+        console.log(data[i]);
+        html += '<a id="' + data[i].id + '">' + (i+1)+'. ' + data[i].title + '</a>';
+    }
+    html += '</span>';
+    html += '</marquee>';
+
+    oDiv.innerHTML = html;
+}
